@@ -50,6 +50,7 @@ environment:
     #   PYTHONPATH: c:\Python36\
     #   PYTHONPATHOMNI: "/cygdrive/c/Python36/python"
     #   PYVER: "py36"
+  
 init:
   # RDP from start
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
@@ -107,7 +108,7 @@ after_build:
   - cmd: 7z a omniorb-4.2.5_%ARCH%_%PYVER%.zip c:\projects\omniORB-4.2.5\lib\
   - cmd: 7z a omniorb-4.2.5_%ARCH%_%PYVER%.zip c:\projects\omniORB-4.2.5\include\
 
-#on_failure:
+on_failure:
 #  RDP for failure
  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
